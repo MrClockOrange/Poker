@@ -1,4 +1,4 @@
-package com.smougel.tablestate;
+package com.smougel;
 
 /**
  * Created by sylvainmougel on 23/03/15.

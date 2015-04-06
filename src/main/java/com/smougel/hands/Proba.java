@@ -76,7 +76,12 @@ public class Proba {
                 Figure otherFigure = hand.getBestFigure();
                 win = win && (myFigure.compareTo(otherFigure) >= 0);
                 if (!win) {
+
                     break;
+                } else {
+                    //System.out.println(myHand + " vs " + hand);
+                    //System.out.println(myFigure + " vs " + otherFigure);
+                    //System.out.println("==============================");
                 }
 
             }

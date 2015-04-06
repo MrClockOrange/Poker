@@ -21,9 +21,7 @@ public class DeckTest {
         Card c2 = deck.giveCard();
         Assert.assertFalse(c1.toString().equals(c2.toString()));
         Assert.assertEquals(50, deck.nbOfCards());
-        System.out.println(deck.lookCard(0));
         deck.shuffle();
-        System.out.println(deck.lookCard(0));
         Assert.assertEquals(50, deck.nbOfCards());
         deck.reset();
         Assert.assertEquals(52, deck.nbOfCards());
@@ -41,7 +39,7 @@ public class DeckTest {
         cards.add(deck.giveCard());
         cards.add(deck.giveCard());
         for (Card c : cards) {
-            System.out.println(c.toString());
+            //System.out.println(c.toString());
         }
 
 
@@ -52,7 +50,6 @@ public class DeckTest {
         Deck deck = new Deck();
         SortedSet<Card> cards = new TreeSet<Card>();
         deck.shuffle();
-
         deck.remove("Ks");
         Assert.assertTrue(deck.nbOfCards() == 51);
     }

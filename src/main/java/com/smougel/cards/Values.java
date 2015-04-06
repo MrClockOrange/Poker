@@ -1,7 +1,6 @@
 package com.smougel.cards;
 
 import com.smougel.utils.PixelMapper;
-import sun.jvm.hotspot.types.basic.VtblAccess;
 
 import java.util.Comparator;
 import java.util.EnumSet;

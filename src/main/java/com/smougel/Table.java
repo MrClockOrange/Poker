@@ -4,7 +4,6 @@ import com.smougel.cards.Card;
 import com.smougel.cards.Values;
 import com.smougel.hands.Hand;
 import com.smougel.hands.Proba;
-import com.smougel.tablestate.TableState;
 import com.smougel.utils.Position;
 import com.smougel.utils.Size;
 
@@ -41,7 +40,7 @@ public class Table {
 
 
 
-    private static final String RESOURCES_CARDS = "/Users/sylvainmougel/git/Poker/src/main/resources/samples/";
+
 
 
     private BufferedImage[] cardPictures;
@@ -51,12 +50,14 @@ public class Table {
     private TableState tableState;
     private Hand hand;
     private Hand previouHand;
+    private int updateNb;
 
 
-    Table () {
+    Table () throws IOException {
         tableCards = new Card[7];
         cardPictures = new BufferedImage[7];
         tableState = new TableState();
+        updateNb = 0;
     }
 
 
@@ -77,12 +78,12 @@ public class Table {
         for (int i = 0; i < cardPictures.length; i++) {
 
 
-            BufferedImage bf = ImageIO.read(new File("src/main/resources/samples/card" + i + ".png"));
+            BufferedImage bf = ImageIO.read(new File(Properties.HOME + "card" + i + ".png"));
             tableCards[i] = new Card(bf);
 
         }
-        Hand tmp = new Hand(tableCards);
 
+        Hand tmp = new Hand(tableCards);
 
         if (hand == null || tmp.nbOfCard() != hand.nbOfCard() ) {
             hand = tmp;
@@ -98,14 +99,7 @@ public class Table {
             }
         }
 
-
-
-
-
-
-
-
-
+        updateNb ++;
     }
 
     public Card[] getTableCards() {
@@ -128,10 +122,10 @@ public class Table {
     public void saveCards() {
         File[] outFiles = new File[7];
         for (int i = 0; i < cardPictures.length; i++) {
-            outFiles[i] = new File(RESOURCES_CARDS + "card" + i + ".png");
+            outFiles[i] = new File(Properties.HOME  + "card" + i + ".png");
         }
 
-        File table = new File(RESOURCES_CARDS + "table.png");
+        File table = new File(Properties.HOME  + "table" + updateNb + ".png");
         try {
             for (int i = 0; i < cardPictures.length; i++) {
 

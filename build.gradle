@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+
+
+
+sourceSets {
+    main {
+
+        java {
+            srcDir 'src/java'
+        }
+        output.resourcesDir 'build/classes/main'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'com.github.axet', name: 'lookup', version: '0.2.14'
+    runtime group: 'com.github.axet', name: 'lookup', version: '0.2.14'
+
+}
+
+

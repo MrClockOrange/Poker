@@ -21,7 +21,7 @@ public class ScreenScrapper {
     private final Table table;
 
 
-    ScreenScrapper(Rectangle r) throws AWTException {
+    ScreenScrapper(Rectangle r) throws AWTException, IOException {
         robot = new Robot();
         rectangle = r;
         table = new Table();

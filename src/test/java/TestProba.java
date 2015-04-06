@@ -1,6 +1,7 @@
 import com.smougel.cards.Card;
 import com.smougel.hands.Deck;
 import com.smougel.hands.Proba;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -11,32 +12,49 @@ public class TestProba {
     @Test
     public void probAA() {
         Proba proba = new Proba(Deck.CARDS.get("As"), Deck.CARDS.get("Ad"));
-        System.out.println(proba.compute(1000, 1));
+        float prob = proba.compute(1000, 1);
+        assertRange(0.83, 0.87, prob);
     }
 
     @Test
     public void probAAMulti() {
-        Proba proba = new Proba(Deck.CARDS.get("Js"), Deck.CARDS.get("3s"));
-        System.out.println(proba.compute(1000, 5));
+        Proba proba = new Proba(Deck.CARDS.get("As"), Deck.CARDS.get("Ad"));
+        float prob = proba.compute(1000, 5);
+        assertRange(0.48, 0.52, prob);
+
     }
 
     @Test
     public void probShittyHand() {
         Proba proba = new Proba(Deck.CARDS.get("2s"), Deck.CARDS.get("7d"));
-        System.out.println(proba.compute(10000, 1));
+        float prob = proba.compute(10000, 1);
+        assertRange(0.35, 0.39, prob);
     }
 
     @Test
     public void probTestFlop() {
         Card[] flop = {Deck.CARDS.get("2h"), Deck.CARDS.get("Ac"), Deck.CARDS.get("3s")};
         Proba proba = new Proba(Deck.CARDS.get("As"), Deck.CARDS.get("Ad"), flop);
-        System.out.println(proba.compute(10000, 1));
+        float prob = proba.compute(10000, 1);
+        assertRange(0.92, 0.96, prob);
     }
 
     @Test
     public void probTestFlopQueen() {
         Card[] flop = {Deck.CARDS.get("Qh"), Deck.CARDS.get("Qc"), Deck.CARDS.get("3s")};
         Proba proba = new Proba(Deck.CARDS.get("As"), Deck.CARDS.get("Ad"), flop);
-        System.out.println(proba.compute(10000, 1));
+        float prob = proba.compute(10000, 1);
+        assertRange(0.86, 0.90, prob);
+    }
+
+    private void assertRange(double min, double max, double actual) {
+        try {
+            Assert.assertTrue(actual > min);
+            Assert.assertTrue(actual < max);
+        } catch (AssertionError e) {
+            System.out.println("Min : " + min);
+            System.out.println("Max : " + max);
+            System.out.println("Actual : " + actual);
+        }
     }
 }
