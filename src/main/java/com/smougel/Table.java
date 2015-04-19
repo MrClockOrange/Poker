@@ -100,6 +100,8 @@ public class Table {
         }
 
         updateNb ++;
+        tableState.update(tablePicture);
+        tableState.dump();
     }
 
     public Card[] getTableCards() {

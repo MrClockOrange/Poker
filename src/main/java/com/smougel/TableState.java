@@ -20,17 +20,23 @@ public class TableState {
     int subSizeX;
     int subSizeY;
     int remainingPlayers = 0;
+
+
+
+    int dealerPosition = 0;
     States state = States.PREFLOP;
     int pot = 0;
     private BufferedImage[] playerImages;
+    private BufferedImage current;
 
 
     public TableState() throws IOException {
         playersProp = new Properties();
         playersProp.load(new FileInputStream("table.properties"));
         numberOfPlayers = Integer.parseInt(playersProp.getProperty("players.nb"));
-        subSizeX = Integer.parseInt(playersProp.getProperty("subImage.X"));
-        subSizeY = Integer.parseInt(playersProp.getProperty("subImage.Y"));
+        subSizeX = Integer.parseInt(playersProp.getProperty("subImageSize.bet.X"));
+        subSizeY = Integer.parseInt(playersProp.getProperty("subImageSize.bet.Y"));
+
         playerImages = new BufferedImage[numberOfPlayers];
         players = new Player[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {
@@ -43,19 +49,37 @@ public class TableState {
     }
 
     public void update(BufferedImage imageTable) {
-
+        current = imageTable;
+        boolean dealerFound = false;
         for (int i = 0; i < playerImages.length; i++) {
 
-            // Extract the player images
+            // Extract the player images and update the bet
             String index = String.valueOf(i);
             playerImages[i] = imageTable.getSubimage(
-                    Integer.valueOf(playersProp.getProperty("players." + index + ".X")),
-                    Integer.valueOf(playersProp.getProperty("players." + index + ".Y")), subSizeX, subSizeY);
+                    Integer.valueOf(playersProp.getProperty("players." + index + ".bet.X")),
+                    Integer.valueOf(playersProp.getProperty("players." + index + ".bet.Y")),
+                    subSizeX,
+                    subSizeY);
+            String betStr = ocr.recognize(playerImages[i]);
 
+            // find the dealer
+            if (!dealerFound) {
+                BufferedImage dealerImg = imageTable.getSubimage(
+                        Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.X")),
+                        Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.Y")),
+                        subSizeX,
+                        subSizeY);
 
-            String str = ocr.recognize(playerImages[i]);
-            players[i].update(str);
+                String dealer = ocr.recognize(dealerImg);
+                if (dealer.equals("D")) {
+                    dealerPosition = i;
+                    dealerFound = true;
+                }
+            }
+            players[i].update(betStr, dealerPosition == i);
         }
+
+
         BufferedImage potImg = imageTable.getSubimage(
                 Integer.valueOf(playersProp.getProperty("pot.X")),
                 Integer.valueOf(playersProp.getProperty("pot.Y")),
@@ -81,11 +105,11 @@ public class TableState {
     }
 
     public void save() {
-        File table = new File(com.smougel.Properties.HOME + "player.png");
+        File table = new File(com.smougel.Properties.HOME + "table.png");
 
         try {
 
-            ImageIO.write(playerImages[4], "png", table);
+            ImageIO.write(current, "png", table);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,5 +126,9 @@ public class TableState {
 
     public int getPot() {
         return pot;
+    }
+
+    public int getDealerPosition() {
+        return dealerPosition;
     }
 }
