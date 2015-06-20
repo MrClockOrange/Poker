@@ -3,6 +3,7 @@ package com.smougel;
 import com.github.axet.lookup.OCR;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,19 +21,19 @@ public class TableState {
     int subSizeX;
     int subSizeY;
     int remainingPlayers = 0;
-
-
-
     int dealerPosition = 0;
+
     States state = States.PREFLOP;
     int pot = 0;
     private BufferedImage[] playerImages;
-    private BufferedImage current;
+    private BufferedImage currentTableImage;
+    private States currentState;
+    boolean newGame = false;
+    private int firstPos;
 
 
-    public TableState() throws IOException {
-        playersProp = new Properties();
-        playersProp.load(new FileInputStream("table.properties"));
+    public TableState(Properties tableProp) throws IOException {
+        playersProp = tableProp;
         numberOfPlayers = Integer.parseInt(playersProp.getProperty("players.nb"));
         subSizeX = Integer.parseInt(playersProp.getProperty("subImageSize.bet.X"));
         subSizeY = Integer.parseInt(playersProp.getProperty("subImageSize.bet.Y"));
@@ -49,9 +50,11 @@ public class TableState {
     }
 
     public void update(BufferedImage imageTable) {
-        current = imageTable;
-        boolean dealerFound = false;
+        newGame = false;
+
+        currentTableImage = imageTable;
         for (int i = 0; i < playerImages.length; i++) {
+            boolean isDealer = false;
 
             // Extract the player images and update the bet
             String index = String.valueOf(i);
@@ -63,45 +66,74 @@ public class TableState {
             String betStr = ocr.recognize(playerImages[i]);
 
             // find the dealer
-            if (!dealerFound) {
-                BufferedImage dealerImg = imageTable.getSubimage(
-                        Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.X")),
-                        Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.Y")),
-                        subSizeX,
-                        subSizeY);
 
-                String dealer = ocr.recognize(dealerImg);
-                if (dealer.equals("D")) {
+            BufferedImage dealerImg = imageTable.getSubimage(
+                    Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.X")),
+                    Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.Y")),
+                    subSizeX,
+                    subSizeY);
+
+            String dealer = ocr.recognize(dealerImg);
+            if (dealer.equals("D")) {
+                isDealer = true;
+                if (i != dealerPosition) {
                     dealerPosition = i;
-                    dealerFound = true;
+                    newGame = true;
                 }
             }
-            players[i].update(betStr, dealerPosition == i);
+
+            //Find player state
+            int iRGB = imageTable.getRGB(
+                    Integer.valueOf(playersProp.getProperty("players." + index + ".cards.X")),
+                    Integer.valueOf(playersProp.getProperty("players." + index + ".cards.Y")));
+
+            Color col = new Color(iRGB);
+            //System.out.println("R : " + col.getRed() + " G : " + col.getGreen() + " B : " + col.getGreen());
+
+            players[i].update(betStr, isDealer, col.getRed() > 80);
         }
 
-
+        // Update pot
         BufferedImage potImg = imageTable.getSubimage(
                 Integer.valueOf(playersProp.getProperty("pot.X")),
                 Integer.valueOf(playersProp.getProperty("pot.Y")),
                 subSizeX,
                 subSizeY);
         String strPot = ocr.recognize(potImg);
-        if(!strPot.isEmpty()) {
+        if (!strPot.isEmpty()) {
             pot = Integer.parseInt(strPot);
         } else {
             pot = 0;
         }
+        firstPos = (dealerPosition + 1) % numberOfPlayers;
 
     }
 
-
+    private int getMaxBetPos() {
+        int max = 0;
+        int pos = 0;
+        for (int i = 0; i < players.length; i++) {
+            if (players[i].getBet() > max) {
+                max = players[i].getBet();
+                pos = i;
+            }
+        }
+        return pos;
+    }
 
 
     public void dump() {
         System.out.println("Pot : " + pot);
-        for (Player p : players) {
-            System.out.println(p.toString());
+        for (int i = firstPos; i < players.length; i++) {
+            System.out.println("P" + i + " " + players[i].toString());
+
         }
+
+        for (int i = 0; i < firstPos; i++) {
+            System.out.println("P" + i + " " + players[i].toString());
+
+        }
+
     }
 
     public void save() {
@@ -109,7 +141,7 @@ public class TableState {
 
         try {
 
-            ImageIO.write(current, "png", table);
+            ImageIO.write(currentTableImage, "png", table);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -130,5 +162,19 @@ public class TableState {
 
     public int getDealerPosition() {
         return dealerPosition;
+    }
+
+    public boolean isNewGame() {
+        return newGame;
+    }
+
+    public int getNumberOfPlayersIn() {
+        int res = 0;
+        for (Player p : players) {
+            if (p.isIn()) {
+                res++;
+            }
+        }
+        return res;
     }
 }

@@ -6,6 +6,7 @@ import org.junit.Test;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Properties;
 
 /**
  * Created by sylvainmougel on 01/04/15.
@@ -26,7 +27,7 @@ public class TableStateTest {
     @Before
     public void init() {
         try {
-            tbs = new TableState();
+            tbs = new TableState(new Properties());
             bf1 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table0" + ".png"));
             bf2 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table1" + ".png"));
             bf3 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table2" + ".png"));
@@ -84,7 +85,7 @@ public class TableStateTest {
 
     @Test
     public void test5() throws IOException {
-        tbs.update(ImageIO.read(getClass().getResourceAsStream("/tables/" + "table5" + ".png")));
+        tbs.update(bf5);
         int[] expectedBets5 = {0, 0, 0, 0, 0, 0, 0, 0, 0};
         tbs.save();
         Assert.assertArrayEquals(expectedBets5, tbs.getBets());

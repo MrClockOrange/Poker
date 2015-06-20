@@ -8,14 +8,16 @@ public class Player {
     int totalCash = 0;
     int bet = 0;
     boolean isDealer =false;
+    boolean in = true;
 
-    public void update(String strBet, boolean dealer) {
+    public void update(String strBet, boolean dealer, boolean isIn) {
         if (strBet.equals("")) {
             bet = 0;
         } else {
             bet = Integer.parseInt(strBet);
         }
         isDealer = dealer;
+        in = isIn;
     }
 
     public int getBet() {
@@ -25,10 +27,19 @@ public class Player {
     @Override
     public String toString() {
         String dealer = isDealer ? "D " : "  ";
-        return dealer + "Bet : " + bet;
+        String betStr = in ? "Bet : " + bet : "Folded";
+        return dealer + betStr;
     }
 
     public void setDealer() {
         isDealer = true;
+    }
+
+    public void fold() {
+        in = false;
+    }
+
+    public boolean isIn() {
+        return in;
     }
 }

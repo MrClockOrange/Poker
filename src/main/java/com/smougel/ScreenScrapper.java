@@ -32,6 +32,11 @@ public class ScreenScrapper {
         return robot.createScreenCapture(rectangle);
     }
 
+    private Color getPlayingPixelColor() {
+        return robot.getPixelColor(215, 310);
+    }
+
+
     public static void main(String[] args) throws AWTException, IOException, InterruptedException {
         ScreenScrapper sc = new ScreenScrapper(new Rectangle(0, 44, 477,328));
         sc.table.update(sc.getImage());
@@ -39,8 +44,13 @@ public class ScreenScrapper {
 
         while(true) {
 
-            Thread.sleep(5000);
-            sc.table.update(sc.getImage());
+            Thread.sleep(500);
+            if (sc.getPlayingPixelColor().getBlue() > 150) {
+                System.out.println("My turn !!!");
+                sc.table.update(sc.getImage());
+                Thread.sleep(5000);
+
+            }
             //System.out.println(sc.table.toString());
 
         }
