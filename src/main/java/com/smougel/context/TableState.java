@@ -1,4 +1,4 @@
-package com.smougel;
+package com.smougel.context;
 
 import com.github.axet.lookup.OCR;
 
@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -122,6 +121,19 @@ public class TableState {
     }
 
 
+    public int getAmountToBet() {
+        return 0;
+    }
+
+    public int getAmountToWin() {
+        int result = 0;
+        for (int i = 0; i < players.length; i++) {
+            result += players[i].getBet();
+        }
+        return result + pot;
+    }
+
+
     public void dump() {
         System.out.println("Pot : " + pot);
         for (int i = firstPos; i < players.length; i++) {
@@ -137,7 +149,7 @@ public class TableState {
     }
 
     public void save() {
-        File table = new File(com.smougel.Properties.HOME + "table.png");
+        File table = new File(playersProp.getProperty("home")+ "table.png");
 
         try {
 

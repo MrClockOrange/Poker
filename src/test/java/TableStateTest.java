@@ -1,4 +1,4 @@
-import com.smougel.TableState;
+import com.smougel.context.TableState;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

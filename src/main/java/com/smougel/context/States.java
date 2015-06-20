@@ -1,4 +1,4 @@
-package com.smougel;
+package com.smougel.context;
 
 /**
  * Created by sylvainmougel on 23/03/15.

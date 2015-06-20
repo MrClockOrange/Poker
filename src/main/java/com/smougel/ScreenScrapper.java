@@ -1,10 +1,12 @@
 package com.smougel;
 
-import javax.swing.*;
+import com.smougel.context.Table;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
-
+import java.util.Properties;
 
 
 /**
@@ -20,11 +22,24 @@ public class ScreenScrapper {
     /* The object representing the table */
     private final Table table;
 
+    /* The object used to bet by clicking on the screen */
+    private final Clicker clicker;
 
-    ScreenScrapper(Rectangle r) throws AWTException, IOException {
+    /* the properties of the table */
+    private final Properties properties;
+
+
+    ScreenScrapper(Properties p) throws AWTException, IOException {
+        properties = p;
         robot = new Robot();
-        rectangle = r;
-        table = new Table();
+        rectangle = new Rectangle(
+                Integer.valueOf(properties.getProperty("window.ori.X")),
+                Integer.valueOf(properties.getProperty("window.ori.Y")),
+                Integer.valueOf(properties.getProperty("window.size.X")),
+                Integer.valueOf(properties.getProperty("window.size.Y"))
+                );
+        table = new Table(properties);
+        clicker = new Clicker(robot, properties);
     }
 
 
@@ -38,16 +53,23 @@ public class ScreenScrapper {
 
 
     public static void main(String[] args) throws AWTException, IOException, InterruptedException {
-        ScreenScrapper sc = new ScreenScrapper(new Rectangle(0, 44, 477,328));
+
+        Properties properties = new java.util.Properties();
+        properties.load(new FileInputStream("table.properties"));
+        ScreenScrapper sc = new ScreenScrapper(properties);
         sc.table.update(sc.getImage());
         //sc.table.display();
 
         while(true) {
 
             Thread.sleep(500);
+
             if (sc.getPlayingPixelColor().getBlue() > 150) {
                 System.out.println("My turn !!!");
                 sc.table.update(sc.getImage());
+
+                Thread.sleep(500);
+                sc.clicker.fold();
                 Thread.sleep(5000);
 
             }
