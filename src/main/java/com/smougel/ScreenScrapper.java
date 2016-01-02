@@ -74,6 +74,8 @@ public class ScreenScrapper {
             Thread.sleep(500);
             if (sc.getPlayingPixelColor().getBlue() > 150) {
                 System.out.println("My turn !!!");
+
+                // Update the table with a new screenshot
                 sc.table.update(sc.getImage());
                 Thread.sleep(500);
                 //sc.clicker.fold();

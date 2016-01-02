@@ -13,7 +13,7 @@ import java.util.Properties;
  * Created by sylvainmougel on 23/03/15.
  *
  */
-public class TableStateComputer {
+public class PlayerStateComputer {
     private final Properties playersProp;
     private final OCR ocr;
     private final Player[] players;
@@ -32,7 +32,7 @@ public class TableStateComputer {
     private int firstPos;
 
 
-    public TableStateComputer(Properties tableProp) throws IOException {
+    public PlayerStateComputer(Properties tableProp) throws IOException {
         playersProp = tableProp;
         numberOfPlayers = Integer.parseInt(playersProp.getProperty("players.nb"));
         subSizeX = Integer.parseInt(playersProp.getProperty("subImageSize.bet.X"));
@@ -44,12 +44,12 @@ public class TableStateComputer {
             players[i] = new Player();
         }
         ocr = new OCR(0.9f);
-        ocr.loadFont(TableStateComputer.class, new File("fonts", "font_2"));
+        ocr.loadFont(PlayerStateComputer.class, new File("fonts", "font_2"));
 
 
     }
 
-    public TableState compute(BufferedImage imageTable) {
+    public PlayersState compute(BufferedImage imageTable) {
         newGame = false;
         currentTableImage = imageTable;
         for (int i = 0; i < playerImages.length; i++) {
@@ -105,7 +105,7 @@ public class TableStateComputer {
             pot = 0;
         }
         firstPos = (dealerPosition + 1) % numberOfPlayers;
-        TableState tb = new TableState(players, dealerPosition, pot, numberOfPlayers);
+        PlayersState tb = new PlayersState(players, dealerPosition, pot, numberOfPlayers);
         return tb;
 
     }

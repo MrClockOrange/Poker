@@ -3,7 +3,7 @@ package com.smougel.context;
 /**
  * Created by sylvainmougel on 02/01/16.
  */
-public interface ITableState {
+public interface IPlayersState {
     /**
      *
      * @return the nb of players still in tha game

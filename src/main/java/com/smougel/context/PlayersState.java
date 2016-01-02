@@ -3,14 +3,14 @@ package com.smougel.context;
 /**
  * Created by sylvainmougel on 02/01/16.
  */
-public class TableState implements ITableState {
+public class PlayersState implements IPlayersState {
 
     private final Player[] players;
     private final int dealerPosition;
     private final int pot;
     private final int totalNbOfPlayers;
 
-    public TableState(Player[] players_, int dealerPosition_, int pot_, int nbOfPlayers) {
+    public PlayersState(Player[] players_, int dealerPosition_, int pot_, int nbOfPlayers) {
         players = players_;
         dealerPosition = dealerPosition_;
         pot = pot_;

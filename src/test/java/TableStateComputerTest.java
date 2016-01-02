@@ -1,6 +1,5 @@
-import com.smougel.context.ITableState;
-import com.smougel.context.TableState;
-import com.smougel.context.TableStateComputer;
+import com.smougel.context.IPlayersState;
+import com.smougel.context.PlayerStateComputer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,7 @@ import java.util.Properties;
  * Created by sylvainmougel on 01/04/15.
  */
 public class TableStateComputerTest {
-    private TableStateComputer tableStateComputer;
+    private PlayerStateComputer tableStateComputer;
     private BufferedImage bf1;
     private BufferedImage bf2;
     private BufferedImage bf3;
@@ -32,7 +31,7 @@ public class TableStateComputerTest {
         try {
             Properties p = new Properties();
             p.load(new FileInputStream("table.properties"));
-            tableStateComputer = new TableStateComputer(p);
+            tableStateComputer = new PlayerStateComputer(p);
             bf1 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table0" + ".png"));
             bf2 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table1" + ".png"));
             bf3 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table2" + ".png"));
@@ -53,7 +52,7 @@ public class TableStateComputerTest {
     @Test
     public void test1() {
 
-        ITableState tbs = tableStateComputer.compute(bf1);
+        IPlayersState tbs = tableStateComputer.compute(bf1);
         int[] expectedBets = {0, 10, 10, 0, 0, 0, 10, 0, 5};
         Assert.assertArrayEquals(expectedBets, tbs.getBets());
         Assert.assertEquals(0, tbs.getPot());
@@ -62,7 +61,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test2() {
-        ITableState tbs = tableStateComputer.compute(bf2);
+        IPlayersState tbs = tableStateComputer.compute(bf2);
         int[] expectedBets2 = {0, 10, 10, 0, 20, 20, 10, 0, 5};
         Assert.assertArrayEquals(expectedBets2, tbs.getBets());
         Assert.assertEquals(0, tbs.getPot());
@@ -72,7 +71,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test3() {
-        ITableState tbs = tableStateComputer.compute(bf3);
+        IPlayersState tbs = tableStateComputer.compute(bf3);
         int[] expectedBets3 = {0, 10, 10, 0, 20, 20, 20, 20,5};
         Assert.assertArrayEquals(expectedBets3, tbs.getBets());
         Assert.assertEquals(0, tbs.getPot());
@@ -81,7 +80,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test4() {
-        ITableState tbs = tableStateComputer.compute(bf4);
+        IPlayersState tbs = tableStateComputer.compute(bf4);
         int[] expectedBets4 = {0, 0, 0, 0, 0, 0, 0, 0,0};
         Assert.assertArrayEquals(expectedBets4, tbs.getBets());
         Assert.assertEquals(119, tbs.getPot());
@@ -90,7 +89,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test5() throws IOException {
-        ITableState tbs = tableStateComputer.compute(bf5);
+        IPlayersState tbs = tableStateComputer.compute(bf5);
         int[] expectedBets5 = {0, 0, 0, 0, 0, 0, 0, 0, 0};
         tableStateComputer.save();
         Assert.assertArrayEquals(expectedBets5, tbs.getBets());
@@ -101,7 +100,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test6() {
-        ITableState tbs = tableStateComputer.compute(bf6);
+        IPlayersState tbs = tableStateComputer.compute(bf6);
         int[] expectedBets6 = {0, 0, 0, 5, 10, 10, 0, 0, 0};
         Assert.assertArrayEquals(expectedBets6, tbs.getBets());
         Assert.assertEquals(0, tbs.getPot());
@@ -110,7 +109,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test7() {
-        ITableState tbs = tableStateComputer.compute(bf7);
+        IPlayersState tbs = tableStateComputer.compute(bf7);
         int[] expectedBets6 = {0, 0, 0, 5, 10, 10, 0, 502, 0};
         Assert.assertArrayEquals(expectedBets6, tbs.getBets());
         Assert.assertEquals(0, tbs.getPot());
@@ -120,7 +119,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test8() {
-        ITableState tbs = tableStateComputer.compute(bf8);
+        IPlayersState tbs = tableStateComputer.compute(bf8);
         int[] expectedBets = {0, 0, 0, 0, 0, 130, 0, 0, 0};
         Assert.assertArrayEquals(expectedBets, tbs.getBets());
         Assert.assertEquals(883, tbs.getPot());
@@ -129,7 +128,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test9() {
-        ITableState tbs = tableStateComputer.compute(bf9);
+        IPlayersState tbs = tableStateComputer.compute(bf9);
         int[] expectedBets = {0, 0, 0, 0, 0, 0, 0, 0, 0};
         Assert.assertArrayEquals(expectedBets, tbs.getBets());
         Assert.assertEquals(435, tbs.getPot());
@@ -137,7 +136,7 @@ public class TableStateComputerTest {
 
     @Test
     public void test10() {
-        ITableState tbs = tableStateComputer.compute(bf10);
+        IPlayersState tbs = tableStateComputer.compute(bf10);
         int[] expectedBets = {0, 0, 0, 0, 0, 0, 0, 0, 0};
         Assert.assertArrayEquals(expectedBets, tbs.getBets());
         Assert.assertEquals(12, tbs.getPot());

@@ -13,15 +13,16 @@ public class Table {
 
     private BufferedImage tablePicture;
     private final HandStateComputer handStateComputer;
-    private TableStateComputer tableStateComputer;
+    private PlayerStateComputer tableStateComputer;
     private int updateNb;
     private final Properties tableProperties;
-
+    private IPlayersState playersState;
+    private IHandState handState;
 
 
     public Table(Properties properties) throws IOException {
         tableProperties = properties;
-        tableStateComputer = new TableStateComputer(tableProperties);
+        tableStateComputer = new PlayerStateComputer(tableProperties);
         handStateComputer = new HandStateComputer(tableProperties);
         updateNb = 0;
     }
@@ -32,8 +33,8 @@ public class Table {
         tablePicture = tableScreenShot;
 
         // Update the state from the new image
-        ITableState tableState = tableStateComputer.compute(tablePicture);
-        IHandState handState = handStateComputer.compute(tablePicture);
+        playersState = tableStateComputer.compute(tablePicture);
+        handState = handStateComputer.compute(tablePicture);
 
         // Save the table for debug purposes
         saveTable();
@@ -47,9 +48,9 @@ public class Table {
         System.out.println("======" + "=====");
         handStateComputer.dump();
 
-        int nb = tableState.getRemainingNbOPlayers();
+        int nb = playersState.getRemainingNbOPlayers();
         float winProba = handState.getWinProba(nb);
-        int stake = tableState.getTotalMoneyAtStake();
+        int stake = playersState.getTotalMoneyAtStake();
 
         System.out.println("Win probability (" + nb + " players): " + winProba);
         System.out.println(stake + "$ at stake" );
@@ -70,6 +71,14 @@ public class Table {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public IPlayersState getPlayersState() {
+        return playersState;
+    }
+
+    public IHandState getHandState() {
+        return handState;
     }
 
     /*
