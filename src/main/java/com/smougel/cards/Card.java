@@ -10,7 +10,7 @@ import java.util.EnumSet;
 /**
  * Created by sylvainmougel on 16/03/15.
  */
-public class Card implements Comparable<Card>{
+public class Card implements ICard {
     private static final int[] BLACK = {0, 0, 0};
     private static final int[] RED = {0, 0, 255};
     private final int width;
@@ -126,22 +126,22 @@ public class Card implements Comparable<Card>{
         }
     }
 
-    public boolean isAdjacent(Card card) {
+    public boolean isAdjacent(ICard card) {
         int diff= this.getValue().getIntVal() - card.getValue().getIntVal();
 
         return (diff == 1) || (diff == -1)
                 || (diff == 12) || (diff == -12); // Ace and two are adjacent
     }
 
-    public boolean isSameColor(Card card) {
+    public boolean isSameColor(ICard card) {
        return this.getColor().equals(card.getColor());
 
 
     }
 
     @Override
-    public int compareTo(Card card) {
-
-        return this.getValue().getIntVal() -card.getValue().getIntVal();
+    public int compareTo(ICard card) {
+        return this.getValue().getIntVal() - card.getValue().getIntVal();
     }
+
 }

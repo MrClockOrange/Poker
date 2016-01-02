@@ -1,0 +1,313 @@
+PokerStars Hand #146161159241:  Hold'em No Limit (5/10) - 2015/12/30 12:01:09 CET [2015/12/30 6:01:09 ET]
+Table 'Disa II' 9-max (Play Money) Seat #8 is the button
+Seat 2: MrClockOran (1000 in chips) 
+Seat 3: ManMg (1000 in chips) 
+Seat 4: Ford1928 (790 in chips) 
+Seat 5: FLUPKEnono (9263 in chips) 
+Seat 8: maxiflop06 (8308 in chips) 
+Seat 9: Maxa7777777 (1724 in chips) 
+Maxa7777777: posts small blind 5
+MrClockOran: posts big blind 10
+ManMg: posts small blind 5
+*** HOLE CARDS ***
+Dealt to MrClockOran [4c 6d]
+NIKOLAY3805 is disconnected 
+ManMg: calls 10
+Ford1928: calls 10
+FLUPKEnono: calls 10
+maxiflop06: folds 
+Maxa7777777: raises 590 to 600
+MrClockOran: folds 
+ManMg: folds 
+Ford1928: folds 
+FLUPKEnono: folds 
+Uncalled bet (590) returned to Maxa7777777
+Maxa7777777 collected 55 from pot
+Maxa7777777: doesn't show hand 
+*** SUMMARY ***
+Total pot 55 | Rake 0 
+Seat 2: MrClockOran (big blind) folded before Flop
+Seat 3: ManMg folded before Flop
+Seat 4: Ford1928 folded before Flop
+Seat 5: FLUPKEnono folded before Flop
+Seat 8: maxiflop06 (button) folded before Flop (didn't bet)
+Seat 9: Maxa7777777 (small blind) collected (55)
+
+
+
+PokerStars Hand #146161179049:  Hold'em No Limit (5/10) - 2015/12/30 12:01:47 CET [2015/12/30 6:01:47 ET]
+Table 'Disa II' 9-max (Play Money) Seat #9 is the button
+Seat 2: MrClockOran (990 in chips) 
+Seat 3: ManMg (985 in chips) 
+Seat 4: Ford1928 (780 in chips) 
+Seat 5: FLUPKEnono (9253 in chips) 
+Seat 7: joseG655 (1000 in chips) 
+Seat 8: maxiflop06 (8308 in chips) 
+Seat 9: Maxa7777777 (1769 in chips) 
+PSPA43 will be allowed to play after the button
+MrClockOran: posts small blind 5
+ManMg: posts big blind 10
+*** HOLE CARDS ***
+Dealt to MrClockOran [6h Ks]
+Ford1928: calls 10
+FLUPKEnono: calls 10
+joseG655: calls 10
+maxiflop06: folds 
+Maxa7777777: calls 10
+PSPA43 leaves the table
+MrClockOran: folds 
+ManMg: checks 
+*** FLOP *** [9d 3d 6s]
+ManMg: checks 
+Ford1928: checks 
+FLUPKEnono: checks 
+joseG655: bets 50
+Maxa7777777: calls 50
+ManMg: folds 
+Ford1928: calls 50
+FLUPKEnono: calls 50
+*** TURN *** [9d 3d 6s] [Tc]
+Ford1928: checks 
+kmate1999 joins the table at seat #1 
+FLUPKEnono: checks 
+joseG655: bets 500
+Maxa7777777: folds 
+Ford1928: folds 
+FLUPKEnono: folds 
+Uncalled bet (500) returned to joseG655
+joseG655 collected 244 from pot
+joseG655: doesn't show hand 
+*** SUMMARY ***
+Total pot 255 | Rake 11 
+Board [9d 3d 6s Tc]
+Seat 2: MrClockOran (small blind) folded before Flop
+Seat 3: ManMg (big blind) folded on the Flop
+Seat 4: Ford1928 folded on the Turn
+Seat 5: FLUPKEnono folded on the Turn
+Seat 7: joseG655 collected (244)
+Seat 8: maxiflop06 folded before Flop (didn't bet)
+Seat 9: Maxa7777777 (button) folded on the Turn
+
+
+
+PokerStars Hand #146161206205:  Hold'em No Limit (5/10) - 2015/12/30 12:02:39 CET [2015/12/30 6:02:39 ET]
+Table 'Disa II' 9-max (Play Money) Seat #2 is the button
+Seat 1: kmate1999 (1000 in chips) 
+Seat 2: MrClockOran (985 in chips) 
+Seat 3: ManMg (975 in chips) 
+Seat 4: Ford1928 (720 in chips) 
+Seat 5: FLUPKEnono (9193 in chips) 
+Seat 7: joseG655 (1184 in chips) 
+Seat 8: maxiflop06 (8308 in chips) 
+Seat 9: Maxa7777777 (1709 in chips) 
+ManMg: posts small blind 5
+Ford1928: posts big blind 10
+kmate1999: posts big blind 10
+*** HOLE CARDS ***
+Dealt to MrClockOran [9d Kh]
+FLUPKEnono: raises 40 to 50
+joseG655: folds 
+maxiflop06: folds 
+Maxa7777777: calls 50
+kmate1999: folds 
+MrClockOran: calls 50
+ManMg: raises 50 to 100
+Ford1928: calls 90
+FLUPKEnono: calls 50
+Maxa7777777: calls 50
+MrClockOran: calls 50
+*** FLOP *** [As 6h 7s]
+ManMg: checks 
+Ford1928: checks 
+FLUPKEnono: bets 875
+Maxa7777777: folds 
+MrClockOran: folds 
+ManMg: folds 
+Ford1928: folds 
+Uncalled bet (875) returned to FLUPKEnono
+FLUPKEnono collected 487 from pot
+FLUPKEnono: doesn't show hand 
+*** SUMMARY ***
+Total pot 510 | Rake 23 
+Board [As 6h 7s]
+Seat 1: kmate1999 folded before Flop
+Seat 2: MrClockOran (button) folded on the Flop
+Seat 3: ManMg (small blind) folded on the Flop
+Seat 4: Ford1928 (big blind) folded on the Flop
+Seat 5: FLUPKEnono collected (487)
+Seat 7: joseG655 folded before Flop (didn't bet)
+Seat 8: maxiflop06 folded before Flop (didn't bet)
+Seat 9: Maxa7777777 folded on the Flop
+
+
+
+PokerStars Hand #146161243906:  Hold'em No Limit (5/10) - 2015/12/30 12:03:49 CET [2015/12/30 6:03:49 ET]
+Table 'Disa II' 9-max (Play Money) Seat #3 is the button
+Seat 1: kmate1999 (990 in chips) 
+Seat 2: MrClockOran (885 in chips) 
+Seat 3: ManMg (875 in chips) 
+Seat 4: Ford1928 (620 in chips) 
+Seat 5: FLUPKEnono (9580 in chips) 
+Seat 7: joseG655 (1184 in chips) 
+Seat 8: maxiflop06 (8308 in chips) 
+Seat 9: Maxa7777777 (1609 in chips) 
+Ford1928: posts small blind 5
+FLUPKEnono: posts big blind 10
+*** HOLE CARDS ***
+Dealt to MrClockOran [9d 8d]
+joseG655: raises 10 to 20
+maxiflop06: folds 
+Maxa7777777: folds 
+kmate1999: calls 20
+MrClockOran: calls 20
+ManMg: folds 
+Ford1928: calls 15
+FLUPKEnono: folds 
+*** FLOP *** [As 5d Jd]
+Ford1928: checks 
+joseG655: checks 
+kmate1999: checks 
+MrClockOran: bets 40
+Ford1928: calls 40
+joseG655: folds 
+kmate1999: folds 
+*** TURN *** [As 5d Jd] [3c]
+Ford1928: checks 
+MrClockOran: checks 
+*** RIVER *** [As 5d Jd 3c] [7s]
+Ford1928: checks 
+MrClockOran: checks 
+*** SHOW DOWN ***
+Ford1928: shows [Kd 6d] (high card Ace)
+MrClockOran: mucks hand 
+Ford1928 collected 162 from pot
+*** SUMMARY ***
+Total pot 170 | Rake 8 
+Board [As 5d Jd 3c 7s]
+Seat 1: kmate1999 folded on the Flop
+Seat 2: MrClockOran mucked [9d 8d]
+Seat 3: ManMg (button) folded before Flop (didn't bet)
+Seat 4: Ford1928 (small blind) showed [Kd 6d] and won (162) with high card Ace
+Seat 5: FLUPKEnono (big blind) folded before Flop
+Seat 7: joseG655 folded on the Flop
+Seat 8: maxiflop06 folded before Flop (didn't bet)
+Seat 9: Maxa7777777 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #146161285799:  Hold'em No Limit (5/10) - 2015/12/30 12:05:07 CET [2015/12/30 6:05:07 ET]
+Table 'Disa II' 9-max (Play Money) Seat #4 is the button
+Seat 1: kmate1999 (970 in chips) 
+Seat 2: MrClockOran (825 in chips) 
+Seat 3: ManMg (875 in chips) 
+Seat 4: Ford1928 (722 in chips) 
+Seat 5: FLUPKEnono (9570 in chips) 
+Seat 7: joseG655 (1164 in chips) 
+Seat 8: maxiflop06 (8308 in chips) 
+Seat 9: Maxa7777777 (1609 in chips) 
+FLUPKEnono: posts small blind 5
+joseG655: posts big blind 10
+*** HOLE CARDS ***
+Dealt to MrClockOran [4d 9c]
+maxiflop06: calls 10
+Maxa7777777 has timed out
+Maxa7777777: folds 
+kmate1999: calls 10
+MrClockOran: calls 10
+joseG655 said, "zzzzzzzzzz"
+ManMg: raises 90 to 100
+Ford1928: calls 100
+FLUPKEnono: folds 
+joseG655: folds 
+maxiflop06: calls 90
+kmate1999: folds 
+MrClockOran: folds 
+*** FLOP *** [7d Qh 8s]
+maxiflop06: checks 
+ManMg: checks 
+Ford1928: checks 
+*** TURN *** [7d Qh 8s] [Jd]
+maxiflop06: checks 
+ManMg: checks 
+Ford1928: checks 
+*** RIVER *** [7d Qh 8s Jd] [Kd]
+maxiflop06: bets 780
+ManMg: folds 
+Ford1928: calls 622 and is all-in
+Uncalled bet (158) returned to maxiflop06
+*** SHOW DOWN ***
+maxiflop06: shows [Kc 6d] (a pair of Kings)
+Ford1928: shows [4h Kh] (a pair of Kings)
+maxiflop06 collected 754 from pot
+Ford1928 collected 754 from pot
+*** SUMMARY ***
+Total pot 1579 | Rake 71 
+Board [7d Qh 8s Jd Kd]
+Seat 1: kmate1999 folded before Flop
+Seat 2: MrClockOran folded before Flop
+Seat 3: ManMg folded on the River
+Seat 4: Ford1928 (button) showed [4h Kh] and won (754) with a pair of Kings
+Seat 5: FLUPKEnono (small blind) folded before Flop
+Seat 7: joseG655 (big blind) folded before Flop
+Seat 8: maxiflop06 showed [Kc 6d] and won (754) with a pair of Kings
+Seat 9: Maxa7777777 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #146161338428:  Hold'em No Limit (5/10) - 2015/12/30 12:06:44 CET [2015/12/30 6:06:44 ET]
+Table 'Disa II' 9-max (Play Money) Seat #5 is the button
+Seat 1: kmate1999 (960 in chips) 
+Seat 2: MrClockOran (815 in chips) 
+Seat 3: ManMg (775 in chips) 
+Seat 4: Ford1928 (754 in chips) 
+Seat 5: FLUPKEnono (9565 in chips) 
+Seat 7: joseG655 (1154 in chips) 
+Seat 8: maxiflop06 (8340 in chips) 
+Seat 9: Maxa7777777 (1609 in chips) 
+joseG655: posts small blind 5
+maxiflop06: posts big blind 10
+*** HOLE CARDS ***
+Dealt to MrClockOran [8d 3s]
+Maxa7777777 has timed out
+Maxa7777777: folds 
+kmate1999: folds 
+MrClockOran: folds 
+ManMg: folds 
+Ford1928: calls 10
+FLUPKEnono: folds 
+joseG655: calls 5
+maxiflop06: checks 
+*** FLOP *** [Jh Th 2s]
+joseG655: checks 
+kmate1999 leaves the table
+maxiflop06: checks 
+Ford1928: checks 
+*** TURN *** [Jh Th 2s] [9s]
+joseG655: checks 
+maxiflop06: checks 
+Ford1928: checks 
+*** RIVER *** [Jh Th 2s 9s] [Qc]
+joseG655: checks 
+SPINO89 joins the table at seat #1 
+maxiflop06: checks 
+Ford1928: checks 
+*** SHOW DOWN ***
+joseG655: shows [7c Qh] (a pair of Queens)
+maxiflop06: shows [5h Qs] (a pair of Queens)
+Ford1928: mucks hand 
+joseG655 collected 15 from pot
+maxiflop06 collected 14 from pot
+*** SUMMARY ***
+Total pot 30 | Rake 1 
+Board [Jh Th 2s 9s Qc]
+Seat 1: kmate1999 folded before Flop (didn't bet)
+Seat 2: MrClockOran folded before Flop (didn't bet)
+Seat 3: ManMg folded before Flop (didn't bet)
+Seat 4: Ford1928 mucked [3d 9h]
+Seat 5: FLUPKEnono (button) folded before Flop (didn't bet)
+Seat 7: joseG655 (small blind) showed [7c Qh] and won (15) with a pair of Queens
+Seat 8: maxiflop06 (big blind) showed [5h Qs] and won (14) with a pair of Queens
+Seat 9: Maxa7777777 folded before Flop (didn't bet)
+
+
+

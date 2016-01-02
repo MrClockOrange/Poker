@@ -1,6 +1,7 @@
 package com.smougel.hands;
 
 import com.smougel.cards.Card;
+import com.smougel.cards.ICard;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -10,10 +11,10 @@ import java.util.SortedSet;
  */
 public class Figure implements Comparable<Figure> {
     private final FigureType type;
-    private final List<Card> kickers;
+    private final List<ICard> kickers;
 
 
-    public Figure(FigureType t, List<Card> k) {
+    public Figure(FigureType t, List<ICard> k) {
         type = t;
         kickers = k;
 
@@ -23,7 +24,7 @@ public class Figure implements Comparable<Figure> {
         return type;
     }
 
-    public List<Card> getKickers() {
+    public List<ICard> getKickers() {
         return kickers;
     }
 
@@ -56,7 +57,7 @@ public class Figure implements Comparable<Figure> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getType().toString());
-        for (Card c : this.getKickers()) {
+        for (ICard c : this.getKickers()) {
             sb.append(" ");
             sb.append(c.getValue());
         }

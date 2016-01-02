@@ -1,5 +1,6 @@
 import com.smougel.cards.Card;
 import com.smougel.cards.Color;
+import com.smougel.cards.ICard;
 import com.smougel.cards.Values;
 import com.smougel.hands.Figure;
 import com.smougel.hands.FigureType;
@@ -17,13 +18,13 @@ public class FigureTest {
 
     @Test
     public void testCompare() {
-        Card c1 = new Card(Color.CLUBS, Values.ACE);
-        Card c2 = new Card(Color.CLUBS, Values.QUEEN);
-        Card c3 = new Card(Color.DIAMONDS, Values.KING);
-        Card c4 = new Card(Color.DIAMONDS, Values.ACE);
+        ICard c1 = new Card(Color.CLUBS, Values.ACE);
+        ICard c2 = new Card(Color.CLUBS, Values.QUEEN);
+        ICard c3 = new Card(Color.DIAMONDS, Values.KING);
+        ICard c4 = new Card(Color.DIAMONDS, Values.ACE);
 
-        List<Card> l1 = new ArrayList<Card>();
-        List<Card> l2 = new ArrayList<Card>();
+        List<ICard> l1 = new ArrayList<ICard>();
+        List<ICard> l2 = new ArrayList<ICard>();
         l1.add(c1);
         l1.add(c2);
         l2.add(c4);

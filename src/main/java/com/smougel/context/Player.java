@@ -11,11 +11,7 @@ public class Player {
     boolean in = true;
 
     public void update(String strBet, boolean dealer, boolean isIn) {
-        if (strBet.equals("")) {
-            bet = 0;
-        } else {
-            bet = Integer.parseInt(strBet);
-        }
+        bet = strBet.equals("") ?  0 : Integer.parseInt(strBet);
         isDealer = dealer;
         in = isIn;
     }

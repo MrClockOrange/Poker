@@ -1,6 +1,7 @@
 package com.smougel.hands;
 
 import com.smougel.cards.Card;
+import com.smougel.cards.ICard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,16 +13,16 @@ import java.util.List;
 public class Proba {
 
     private final Deck deck;
-    private final Card card1;
-    private final List<Card> tableCards;
-    private final Card card2;
+    private final ICard card1;
+    private final List<ICard> tableCards;
+    private final ICard card2;
 
 
-    public Proba(Card c1, Card c2, Card... cardsArg) {
+    public Proba(ICard c1, ICard c2, ICard... cardsArg) {
         deck = new Deck();
         card1 = c1;
         card2 = c2;
-        tableCards = new ArrayList<Card>();
+        tableCards = new ArrayList<ICard>();
         tableCards.addAll(Arrays.asList(cardsArg));
         //System.out.println("Proba init with "+ c1 + c2 + cardsArg );
 
@@ -35,7 +36,7 @@ public class Proba {
             deck.reset();
             deck.remove(card1.toString());
             deck.remove(card2.toString());
-            for (Card c : tableCards) {
+            for (ICard c : tableCards) {
                 deck.remove(c.toString());
             }
             deck.shuffle();
@@ -43,7 +44,7 @@ public class Proba {
             Hand myHand = new Hand();
             myHand.add(card1);
             myHand.add(card2);
-            for (Card c : tableCards) {
+            for (ICard c : tableCards) {
                 myHand.add(c);
             }
 
@@ -52,7 +53,7 @@ public class Proba {
                 Hand hand = new Hand();
                 hand.add(deck.giveCard());
                 hand.add(deck.giveCard());
-                for (Card c : tableCards) {
+                for (ICard c : tableCards) {
                     hand.add(c);
                 }
                 otherHands.add(hand);

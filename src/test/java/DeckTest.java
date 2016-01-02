@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
+
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -19,6 +20,7 @@ public class DeckTest {
 
         Card c1 = deck.giveCard();
         Card c2 = deck.giveCard();
+
         Assert.assertFalse(c1.toString().equals(c2.toString()));
         Assert.assertEquals(50, deck.nbOfCards());
         deck.shuffle();

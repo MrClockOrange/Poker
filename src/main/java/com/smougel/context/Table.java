@@ -1,10 +1,8 @@
 package com.smougel.context;
 
-import com.smougel.hands.Hand;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -14,10 +12,8 @@ import java.util.Properties;
 public class Table {
 
     private BufferedImage tablePicture;
-
-    private final HandState handState;
-    private TableState tableState;
-
+    private final HandStateComputer handStateComputer;
+    private TableStateComputer tableStateComputer;
     private int updateNb;
     private final Properties tableProperties;
 
@@ -25,8 +21,8 @@ public class Table {
 
     public Table(Properties properties) throws IOException {
         tableProperties = properties;
-        tableState = new TableState(tableProperties);
-        handState = new HandState(tableProperties);
+        tableStateComputer = new TableStateComputer(tableProperties);
+        handStateComputer = new HandStateComputer(tableProperties);
         updateNb = 0;
     }
 
@@ -36,24 +32,24 @@ public class Table {
         tablePicture = tableScreenShot;
 
         // Update the state from the new image
-        tableState.update(tablePicture);
-        handState.update(tablePicture);
+        ITableState tableState = tableStateComputer.compute(tablePicture);
+        IHandState handState = handStateComputer.compute(tablePicture);
 
         // Save the table for debug purposes
         saveTable();
 
-        if (tableState.isNewGame()) {
+        if (tableStateComputer.isNewGame()) {
             System.out.println("====== NEW GAME =====");
 
         }
         System.out.println("======" + handState.retrieveState() + "=====");
-        tableState.dump();
-        System.out.println("======"  + "=====");
-        handState.dump();
+        tableStateComputer.dump();
+        System.out.println("======" + "=====");
+        handStateComputer.dump();
 
-        int nb = tableState.getNumberOfPlayersIn();
-        float winProba = handState.getWinningProba(nb);
-        int stake = tableState.getAmountToWin();
+        int nb = tableState.getRemainingNbOPlayers();
+        float winProba = handState.getWinProba(nb);
+        int stake = tableState.getTotalMoneyAtStake();
 
         System.out.println("Win probability (" + nb + " players): " + winProba);
         System.out.println(stake + "$ at stake" );

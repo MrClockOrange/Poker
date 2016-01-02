@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'application'
 
 
 
@@ -25,11 +26,18 @@ dependencies {
 
 }
 
-/*
- task execute(type:JavaExec) {
-    main = mainClass
-    classpath = sourceSets.main.runtimeClasspath
+mainClassName = "com.smougel.ScreenScrapper"
+
+distZip {
+    into(project.name) {
+        from '.'
+        include 'table.properties'
+    }
 }
+ //task execute(type:JavaExec) {
+    //main = ScreenScrapper
+    //classpath = sourceSets.main.runtimeClasspath
+//}
 
 
-*/
+

@@ -11,7 +11,7 @@ public class Computer {
     public static void main(String[] args) {
 
         Proba proba = new Proba(Deck.CARDS.get(args[0]), Deck.CARDS.get(args[1]));
-        System.out.println(proba.compute(10000, 1));
+        System.out.println(proba.compute(10000 , 1));
 
 
     }
