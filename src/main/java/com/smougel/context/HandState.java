@@ -35,9 +35,9 @@ public class HandState implements IHandState{
     @Override
     public float getWinProba(int playersNb) {
         float result = 0;
-        if (!tableCards[5].getValue().equals(Values.NONE) && !tableCards[6].getValue().equals(Values.NONE)) {
+        if (!handCards[0].getValue().equals(Values.NONE) && !handCards[1].getValue().equals(Values.NONE)) {
 
-            Proba proba = new Proba(tableCards[5], tableCards[6], getTableCards());
+            Proba proba = new Proba(handCards[0], handCards[1], getTableCards());
             result = proba.compute(10000, playersNb);
 
         }

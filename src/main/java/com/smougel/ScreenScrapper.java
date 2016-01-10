@@ -1,15 +1,18 @@
 package com.smougel;
 
 import com.smougel.context.Table;
+import com.smougel.handparser.Hand;
 import com.smougel.handparser.HandParser;
-import com.sun.java.util.jar.pack.*;
+import com.smougel.ia.EAction;
+import com.smougel.ia.EquityPlayer;
+import com.smougel.ia.SameActionAlways;
+import com.smougel.ia.IPlayer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.SortedMap;
 
 
 /**
@@ -33,7 +36,7 @@ public class ScreenScrapper {
     /* the properties of the table */
     private final Properties properties;
 
-    private final  HandParser handParser;
+    private HandParser handParser;
 
 
     ScreenScrapper(Properties p) throws AWTException, IOException {
@@ -48,6 +51,15 @@ public class ScreenScrapper {
                 );
         table = new Table(properties);
         clicker = new Clicker(robot, properties);
+
+        handParser = new HandParser("/Users/sylvainmougel/" +
+                "Library/Application Support/PokerStarsFR/HandHistory/MrCLockOran/");
+    }
+
+    public static long getRandTime() {
+        int max = 5000;
+        int min = 2000;
+        return min + (long)(Math.random() * ((max - min) + 1));
     }
 
 
@@ -62,14 +74,14 @@ public class ScreenScrapper {
 
     public static void main(String[] args) throws AWTException, IOException, InterruptedException {
         Properties properties = new java.util.Properties();
-        properties.load(ScreenScrapper.class.getResourceAsStream("/table.properties"));
+        properties.load(ScreenScrapper.class.getResourceAsStream("/nine_players.properties"));
 
         ScreenScrapper sc = new ScreenScrapper(properties);
 
         sc.table.update(sc.getImage());
         //sc.table.display();
 
-        while(true) {
+        while (true) {
 
             Thread.sleep(500);
             if (sc.getPlayingPixelColor().getBlue() > 150) {
@@ -77,8 +89,38 @@ public class ScreenScrapper {
 
                 // Update the table with a new screenshot
                 sc.table.update(sc.getImage());
-                Thread.sleep(500);
-                //sc.clicker.fold();
+
+                // get the player name
+                sc.handParser.parse();
+                SortedMap<String, Hand> handMap = sc.handParser.getHands();
+                String lastHand = handMap.lastKey();
+                System.out.println(handMap.get(lastHand).getPlayersName());
+
+                IPlayer player = new SameActionAlways(EAction.CALL);
+                IPlayer eplayer = new EquityPlayer();
+
+
+                // Compute action
+                EAction action = eplayer.play(sc.table.getHandState(), sc.table.getPlayersStateHistory());
+                System.out.println("Computed action " + action);
+
+                // Wait for a while and play
+                long waitTime = getRandTime();
+                System.out.println("Wait for : " + waitTime);
+                Thread.sleep(waitTime);
+
+
+                switch (action) {
+                    case BET:
+                        sc.clicker.betRaise();
+                        break;
+                    case CALL:
+                        sc.clicker.call();
+                        break;
+                    case FOLD:
+                        sc.clicker.fold();
+                        break;
+                }
                 Thread.sleep(5000);
 
             }

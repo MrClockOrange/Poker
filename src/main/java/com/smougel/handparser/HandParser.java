@@ -1,9 +1,6 @@
 package com.smougel.handparser;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -12,20 +9,25 @@ import java.util.*;
 public class HandParser {
 
     private String path;
-    private Map<String,Hand> handMap;
+    private SortedMap<String,Hand> handMap;
 
     public HandParser(String f) {
-        handMap = new HashMap<>();
+        handMap = new TreeMap<>();
         path = f;
     }
 
 
     public void parse() throws FileNotFoundException {
         File file = new File(path);
+        System.out.println(file.getAbsolutePath());
         if (file.isDirectory()) {
-            String[] files = file.list();
+            String[] files = file.list(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.startsWith("HH");
+                }
+            });
             for (String f : files) {
-                System.out.println(f);
                 analyseFile(new FileInputStream(path + f));
             }
         } else {
@@ -43,17 +45,17 @@ public class HandParser {
                 Hand hand = currentHand == null ? new Hand() : new Hand(currentHand);
                 if (!hand.isEmpty())
                     handMap.put(hand.getId(), hand);
-                //System.out.println(hand.getPlayersName());
                 currentHand = new ArrayList<>();
-                //System.out.println(hand.getPlayerAction("MrClockOran"));
 
             }
             currentHand.add(line);
-            //System.out.println(line);
         }
+        Hand hand = currentHand == null ? new Hand() : new Hand(currentHand);
+        if (!hand.isEmpty())
+            handMap.put(hand.getId(), hand);
     }
 
-    public Map<String, Hand> getHands() {
+    public SortedMap<String, Hand> getHands() {
         return handMap;
     }
 }

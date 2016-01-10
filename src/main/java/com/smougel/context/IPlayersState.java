@@ -33,4 +33,8 @@ public interface IPlayersState {
     int getDealerPosition();
 
     int getTotalMoneyAtStake();
+
+    int getAmountToCall();
+
+    int getLastBet();
 }

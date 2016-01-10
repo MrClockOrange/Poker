@@ -15,6 +15,7 @@ import java.util.Properties;
  */
 public class TableStateComputerTest {
     private PlayerStateComputer tableStateComputer;
+    private PlayerStateComputer tableStateComputer_2P;
     private BufferedImage bf1;
     private BufferedImage bf2;
     private BufferedImage bf3;
@@ -25,13 +26,14 @@ public class TableStateComputerTest {
     private BufferedImage bf8;
     private BufferedImage bf9;
     private BufferedImage bf10;
+    private BufferedImage twoP1;
 
     @Before
     public void init() {
         try {
-            Properties p = new Properties();
-            p.load(new FileInputStream("table.properties"));
-            tableStateComputer = new PlayerStateComputer(p);
+            Properties p9 = new Properties();
+            p9.load(getClass().getResourceAsStream("/nine_players.properties"));
+            tableStateComputer = new PlayerStateComputer(p9);
             bf1 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table0" + ".png"));
             bf2 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table1" + ".png"));
             bf3 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table2" + ".png"));
@@ -42,6 +44,10 @@ public class TableStateComputerTest {
             bf8 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table8" + ".png"));
             bf9 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table9" + ".png"));
             bf10 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "table10" + ".png"));
+            twoP1 = ImageIO.read(getClass().getResourceAsStream("/tables/" + "two_players1" + ".png"));
+            Properties p2 = new Properties();
+            p2.load(getClass().getResourceAsStream("/two_players.properties"));
+            tableStateComputer_2P = new PlayerStateComputer(p2);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
@@ -141,6 +147,16 @@ public class TableStateComputerTest {
         Assert.assertArrayEquals(expectedBets, tbs.getBets());
         Assert.assertEquals(12, tbs.getPot());
         Assert.assertEquals(4, tbs.getDealerPosition());
+    }
+
+    @Test
+    public void test2p1() {
+        IPlayersState tbs = tableStateComputer_2P.compute(twoP1);
+        tableStateComputer_2P.save();
+        int[] expectedBets = {60, 0};
+        Assert.assertArrayEquals(expectedBets, tbs.getBets());
+        Assert.assertEquals(38, tbs.getPot());
+        Assert.assertEquals(0, tbs.getDealerPosition());
     }
 
 }

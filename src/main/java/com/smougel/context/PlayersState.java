@@ -49,7 +49,7 @@ public class PlayersState implements IPlayersState {
     public int getPos() {
         // Position 8 is my position
         // If I'm the dealer it returns 0
-        return 8 - dealerPosition;
+        return totalNbOfPlayers - 1 - dealerPosition;
     }
 
     @Override
@@ -69,10 +69,28 @@ public class PlayersState implements IPlayersState {
     @Override
     public int getTotalMoneyAtStake() {
         int result = 0;
-        for (int i = 0; i < players.length; i++) {
-            result += players[i].getBet();
+        for (Player p : players) {
+            result += p.getBet();
         }
         return result + pot;
+    }
+
+    @Override
+    public int getAmountToCall() {
+        return getLastBet() - players[players.length - 1].getBet();
+    }
+
+    @Override
+    public int getLastBet() {
+        int lastBet = 0;
+        for (int i = 0; i < players.length; i++) {
+            int index = players.length -1 -i;
+            if (players[index].isIn()) {
+                lastBet = players[index].getBet();
+                break;
+            }
+        }
+        return lastBet;
     }
 
 }

@@ -4,6 +4,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -18,6 +20,7 @@ public class Table {
     private final Properties tableProperties;
     private IPlayersState playersState;
     private IHandState handState;
+    private final List<IPlayersState> playersStateHistory;
 
 
     public Table(Properties properties) throws IOException {
@@ -25,6 +28,7 @@ public class Table {
         tableStateComputer = new PlayerStateComputer(tableProperties);
         handStateComputer = new HandStateComputer(tableProperties);
         updateNb = 0;
+        playersStateHistory = new ArrayList<>();
     }
 
 
@@ -41,21 +45,14 @@ public class Table {
 
         if (tableStateComputer.isNewGame()) {
             System.out.println("====== NEW GAME =====");
+            playersStateHistory.clear();
 
         }
+        playersStateHistory.add(playersState);
         System.out.println("======" + handState.retrieveState() + "=====");
         tableStateComputer.dump();
         System.out.println("======" + "=====");
         handStateComputer.dump();
-
-        int nb = playersState.getRemainingNbOPlayers();
-        float winProba = handState.getWinProba(nb);
-        int stake = playersState.getTotalMoneyAtStake();
-
-        System.out.println("Win probability (" + nb + " players): " + winProba);
-        System.out.println(stake + "$ at stake" );
-        System.out.println("Call threshold : " + winProba * stake);
-
         updateNb++;
     }
 
@@ -79,6 +76,10 @@ public class Table {
 
     public IHandState getHandState() {
         return handState;
+    }
+
+    public List<IPlayersState> getPlayersStateHistory() {
+        return playersStateHistory;
     }
 
     /*
