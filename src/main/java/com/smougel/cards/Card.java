@@ -11,15 +11,26 @@ import java.util.EnumSet;
  * Created by sylvainmougel on 16/03/15.
  */
 public class Card implements ICard {
+
+    /* Black color */
     private static final int[] BLACK = {0, 0, 0};
+
+    /* Red color */
     private static final int[] RED = {0, 0, 255};
+
+    /* Width of the image */
     private final int width;
+
+    /* Pixels describing the image */
     private byte[] pixels = null;
+
+    /* The card value from 2 to Ace */
     private Values value = null;
+
+    /* The card value ie Spade Heart Diamond or Club */
     private Color color = null;
 
     public Card(BufferedImage bf) {
-
         width = bf.getWidth();
         pixels = ((DataBufferByte) bf.getRaster().getDataBuffer()).getData();
         value = getValue();

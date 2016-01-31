@@ -5,20 +5,25 @@ package com.smougel.utils;
  */
 public class Position {
 
-    private final int upper;
-    private final int left;
+    private final int x;
+    private final int y;
 
-    public Position(int l, int u) {
-        left = l;
-        upper = u;
+    public Position(int x_, int y_) {
+        x = x_;
+        y = y_;
 
     }
 
-    public int getUpper() {
-        return upper;
+    public int getX() {
+        return x;
     }
 
-    public int getLeft() {
-        return left;
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public String toString() {
+        return "X : " + x + " Y : " + y;
     }
 }
