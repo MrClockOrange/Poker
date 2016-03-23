@@ -1,4 +1,4 @@
-package com.smougel.context;
+package com.smougel.datamodel;
 
 import com.smougel.cards.ICard;
 

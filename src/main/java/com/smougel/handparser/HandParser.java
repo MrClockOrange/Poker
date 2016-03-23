@@ -9,15 +9,16 @@ import java.util.*;
 public class HandParser {
 
     private String path;
+    private  PrintWriter pw;
     private SortedMap<String,Hand> handMap;
-
-    public HandParser(String f) {
-        handMap = new TreeMap<>();
+    public HandParser(String f) throws FileNotFoundException {
         path = f;
+        pw = new PrintWriter("/Users/sylvainmougel/hands.mat");
     }
 
 
     public void parse() throws FileNotFoundException {
+        handMap = new TreeMap<>();
         File file = new File(path);
         System.out.println(file.getAbsolutePath());
         if (file.isDirectory()) {
@@ -33,6 +34,7 @@ public class HandParser {
         } else {
             analyseFile(new FileInputStream(path));
         }
+        pw.close();
     }
 
     private void analyseFile(FileInputStream f) throws FileNotFoundException {
@@ -42,7 +44,7 @@ public class HandParser {
             String line = scanner.nextLine();
 
             if (line.contains("PokerStars Hand")) {
-                Hand hand = currentHand == null ? new Hand() : new Hand(currentHand);
+                Hand hand = currentHand == null ? new Hand(pw) : new Hand(currentHand, pw);
                 if (!hand.isEmpty())
                     handMap.put(hand.getId(), hand);
                 currentHand = new ArrayList<>();
@@ -50,12 +52,17 @@ public class HandParser {
             }
             currentHand.add(line);
         }
-        Hand hand = currentHand == null ? new Hand() : new Hand(currentHand);
+        Hand hand = currentHand == null ? new Hand(pw) : new Hand(currentHand, pw);
         if (!hand.isEmpty())
             handMap.put(hand.getId(), hand);
+
+
     }
 
-    public SortedMap<String, Hand> getHands() {
+    public SortedMap<String, Hand> getHands() throws FileNotFoundException {
+        if (handMap == null) {
+            parse();
+        }
         return handMap;
     }
 }

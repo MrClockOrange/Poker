@@ -1,9 +1,9 @@
-package com.smougel.context;
+package com.smougel.table_analysis;
 
 import com.smougel.cards.Card;
 import com.smougel.cards.Values;
+import com.smougel.datamodel.IHandState;
 import com.smougel.hands.Hand;
-import com.smougel.hands.Proba;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -1,6 +1,7 @@
-package com.smougel.context;
+package com.smougel.table_analysis;
 
 import com.github.axet.lookup.OCR;
+import com.smougel.datamodel.States;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -65,7 +66,6 @@ public class PlayerStateComputer {
             String betStr = ocr.recognize(playerImages[i]);
 
             // find the dealer
-
             BufferedImage dealerImg = imageTable.getSubimage(
                     Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.X")),
                     Integer.valueOf(playersProp.getProperty("players." + index + ".dealer.Y")),

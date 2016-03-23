@@ -1,4 +1,7 @@
-package com.smougel.context;
+package com.smougel.table_analysis;
+
+import com.smougel.datamodel.IHandState;
+import com.smougel.datamodel.IPlayersState;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

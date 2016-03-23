@@ -1,14 +1,15 @@
-package com.smougel.context;
+package com.smougel.table_analysis;
 
-import com.smougel.cards.Card;
 import com.smougel.cards.ICard;
 import com.smougel.cards.Values;
+import com.smougel.datamodel.IHandState;
+import com.smougel.datamodel.States;
 import com.smougel.hands.Proba;
 
 /**
  * Created by sylvainmougel on 02/01/16.
  */
-public class HandState implements IHandState{
+public class HandState implements IHandState {
     private ICard[] handCards;
     private ICard[] tableCards;
     private int winProba;

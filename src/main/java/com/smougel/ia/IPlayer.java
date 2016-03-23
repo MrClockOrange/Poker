@@ -1,7 +1,7 @@
 package com.smougel.ia;
 
-import com.smougel.context.IHandState;
-import com.smougel.context.IPlayersState;
+import com.smougel.datamodel.IHandState;
+import com.smougel.datamodel.IPlayersState;
 
 import java.util.List;
 

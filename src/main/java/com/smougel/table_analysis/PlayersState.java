@@ -1,4 +1,6 @@
-package com.smougel.context;
+package com.smougel.table_analysis;
+
+import com.smougel.datamodel.IPlayersState;
 
 /**
  * Created by sylvainmougel on 02/01/16.

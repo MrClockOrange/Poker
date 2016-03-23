@@ -14,6 +14,7 @@ public class PokerMain {
 
     public static void main(String[] args) throws IOException, AWTException {
         Properties tableProp = new java.util.Properties();
+        //Read the properties and launch one thread per table
         tableProp.load(ScreenScrapper.class.getResourceAsStream("/tables.properties"));
         for (int i = 0; i < Integer.valueOf(tableProp.getProperty("windows.nb")); i++) {
             Position windowPos = new Position(

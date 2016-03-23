@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by sylvainmougel on 26/03/15.
  */
-public class Proba {
+public class   Proba {
 
     private final Deck deck;
     private final ICard card1;

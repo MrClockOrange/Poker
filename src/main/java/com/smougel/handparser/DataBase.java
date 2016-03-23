@@ -1,6 +1,6 @@
 package com.smougel.handparser;
 
-import com.smougel.context.States;
+import com.smougel.datamodel.States;
 
 import java.util.Map;
 import java.util.Set;

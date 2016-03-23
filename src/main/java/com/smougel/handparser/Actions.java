@@ -13,7 +13,6 @@ public class Actions {
         nbOfRaise = 0;
         nbOfCall = 0;
         folded = true;
-
     }
 
     public void updateActions(String action) {

@@ -1,4 +1,4 @@
-package com.smougel.context;
+package com.smougel.table_analysis;
 
 /**
  * Created by sylvainmougel on 23/03/15.

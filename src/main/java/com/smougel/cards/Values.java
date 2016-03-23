@@ -14,7 +14,7 @@ public enum Values  {
     TWO("2", PixelMapper.TWO_RELEVANT_PIXELS,2),
     EIGHT("8", PixelMapper.EIGHT_RELEVANT_PIXELS, 8),
     FIVE("5", PixelMapper.FIVE_RELEVANT_PIXELS, 5),
-    TEN("10", PixelMapper.TEN_RELEVANT_PIXELS, 10),
+    TEN("T", PixelMapper.TEN_RELEVANT_PIXELS, 10),
     JACK("J", PixelMapper.JACK_RELEVANT_PIXELS,11),
     QUEEN("Q", PixelMapper.QUEEN_RELEVANT_PIXELS, 12),
     KING("K", PixelMapper.KING_RELEVANT_PIXELS, 13),

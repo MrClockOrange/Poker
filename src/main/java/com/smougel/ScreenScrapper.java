@@ -1,6 +1,6 @@
 package com.smougel;
 
-import com.smougel.context.Table;
+import com.smougel.table_analysis.Table;
 import com.smougel.handparser.Hand;
 import com.smougel.handparser.HandParser;
 import com.smougel.ia.EAction;
@@ -101,6 +101,7 @@ public class ScreenScrapper extends Thread {
                     handParser.parse();
                     SortedMap<String, Hand> handMap = handParser.getHands();
                     String lastHand = handMap.lastKey();
+
                     System.out.println(handMap.get(lastHand).getPlayersName());
 
                     IPlayer player = new SameActionAlways(EAction.CALL);
