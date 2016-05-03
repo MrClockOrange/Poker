@@ -2,10 +2,7 @@ package com.smougel.handparser;
 
 import com.smougel.datamodel.GameState;
 import com.smougel.datamodel.States;
-import com.smougel.hands.Deck;
-import com.smougel.hands.Proba;
 
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -84,11 +81,13 @@ public class Hand implements Comparable<Hand> {
                 if (line.contains("Dealt to")) {
                     holeCards = line.split("\\[")[1].split("\\]")[0];
                     hero = line.split(" ")[2];
+                    // Initialize the game state
                     currentGameState = new GameState(
                             players,
                             holeCards,
                             getPosition(hero),
-                            hero);
+                            hero,
+                            dealerName);
                     currentGameStateBlock = new ArrayList<>();
                 }
             }
@@ -99,13 +98,14 @@ public class Hand implements Comparable<Hand> {
                 currentGameStateBlock.add(line);
                 playersAction.get(playerName).get(status).updateActions(split[1]);
                 if (playerName.equals(hero)) {
+                    // Update the game state
                     currentGameState.update(
                             status,
                             boardCards,
                             currentGameStateBlock
                     );
-                    System.out.println(currentGameState.vetorize());
-                    pw.println(currentGameState.vetorize());
+                    //System.out.println(currentGameState.toString());
+                    pw.println(currentGameState.vetorizeGameState());
                     currentGameStateBlock = new ArrayList<>();
                 }
             }

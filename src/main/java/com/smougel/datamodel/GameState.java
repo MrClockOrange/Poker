@@ -3,8 +3,6 @@ package com.smougel.datamodel;
 import com.smougel.cards.Card;
 import com.smougel.hands.Deck;
 import com.smougel.hands.Proba;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,31 +14,41 @@ import java.util.Map;
  */
 public class GameState {
     private final String hero;
+    private final String dealer;
     private String boardCards;
     private States state;
     private final String holeCards;
+    private double heroAction = 0;
+    private int moneyAtStake;
+    private int moneyBid = 0;
+    private List<String> players;
+    private int lastBet = 0;
 
-    /* Position of the hero */
+    /* Position of the hero Pos 1  = SB, 2 =BB etc.. */
     private int position;
     Map<String, Integer> lastActions;
     private Proba prob;
 
-    public GameState(List<String> players, String hCards, int pos, String h) {
+    public GameState(List<String> p, String hCards, int pos, String h, String d) {
+        players = p;
+        dealer = d;
         hero = h;
         state = States.PREFLOP;
         position = pos;
         holeCards = hCards;
         lastActions = new HashMap<>();
-        for (String p : players) {
-            lastActions.put(p, 0);
+        moneyAtStake = 15;
+        moneyBid += (position == 1 || position == 2) ? 5 * pos : 0;
+        for (String player : players) {
+            lastActions.put(player, 0);
         }
+
 
     }
     public void update(
             States status,
             String tbc,
-            List<String> currentGameStateBlock
-    ) {
+            List<String> currentGameStateBlock) {
         state = status;
         boardCards = tbc;
 
@@ -66,21 +74,47 @@ public class GameState {
 
         for (String line : currentGameStateBlock) {
             String player = line.split(":")[0];
-            if (line.contains("checks") || line.contains("calls")) {
-
-            } else if (line.contains("raises") || line.contains("bets")){
-                lastActions.put(player, lastActions.get(player)+1);
+            double action = 0;
+            int bet = 0;
+            if (line.contains("checks")) {
+                action = 2;
+            } else if (line.contains("calls")) {
+                action = 2;
+                String callString = line.split("calls")[1].trim();
+                bet = callString.contains("all") ?
+                        Integer.valueOf(callString.split(" ")[0].trim()) :
+                        Integer.valueOf(callString);
+            } else if (line.contains("raises")) {
+                action = 3;
+                lastActions.put(player, lastActions.get(player) + 1);
+                bet = Integer.valueOf(line.split("raises")[1].split("to")[0].trim());
+            } else if (line.contains("bets")) {
+                action = 3;
+                lastActions.put(player, lastActions.get(player) + 1);
+                String betString = line.split("bets")[1].trim();
+                bet = betString.contains("all") ?
+                        Integer.valueOf(betString.split(" ")[0].trim()) :
+                        Integer.valueOf(betString);
             } else if (line.contains("folds")){
                 lastActions.put(player, -1);
+                action = 1;
             }
+            moneyAtStake += bet;
+            if (player.equals(hero)) {
+                heroAction = action;
+                moneyBid += bet;
+                lastBet = bet;
+            }
+
         }
     }
 
 
-
-
-
-    public String vetorize() {
+    /**
+     * Generate a vector representing the game state
+     * @return
+     */
+    public String vetorizeGameState() {
         int remainingNbOfPlayers = remainingNbOfPlayer();
         StringBuilder sb = new StringBuilder();
         sb.append(state.ordinal());
@@ -88,6 +122,10 @@ public class GameState {
         sb.append(prob.compute(1000, remainingNbOfPlayers));
         sb.append(" ");
         sb.append(remainingNbOfPlayers);
+        sb.append(" ");
+        sb.append(moneyAtStake - lastBet);
+        sb.append(" ");
+        sb.append(moneyBid -lastBet);
         sb.append(" ");
         sb.append(position);
         for (Map.Entry<String,Integer> entry : lastActions.entrySet()) {
@@ -100,9 +138,11 @@ public class GameState {
         for (int i= 0; i< 9- lastActions.size(); i++) {
             sb.append(" -1");
         }
-
         return sb.toString();
+    }
 
+    public String actualAction() {
+        return String.valueOf(heroAction);
     }
 
     private int remainingNbOfPlayer() {
